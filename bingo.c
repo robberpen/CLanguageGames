@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include <stdlib.h>
 #include<time.h>
 
 // 印出遊戲說明與規則
