@@ -1,134 +1,134 @@
 #include<stdio.h>
 #include<time.h>
 
-// ¦L¥X¹CÀ¸»¡©ú»P³W«h
+// å°å‡ºéŠæˆ²èªªæ˜èˆ‡è¦å‰‡
 void print_rules(void);
 
-// ¦L¥X¿é¤J¶¶§Çªº®æ¤l
+// å°å‡ºè¼¸å…¥é †åºçš„æ ¼å­
 void print_initial_cells(void);
 
-// ±N®æ¤lªº­Èªì©l¤Æ¬°-1
+// å°‡æ ¼å­çš„å€¼åˆå§‹åŒ–ç‚º-1
 void initial_cells(int cells[]);
 
-// ¶ñº¡ª±®aªº®æ¤l¡]ÀH¾÷©Î¦Û¤v¿é¤J¡^
+// å¡«æ»¿ç©å®¶çš„æ ¼å­ï¼ˆéš¨æ©Ÿæˆ–è‡ªå·±è¼¸å…¥ï¼‰
 void fill_player_cells(int cells[]);
 
-// ÀH¾÷¶ñ¤J¼Æ¦r
+// éš¨æ©Ÿå¡«å…¥æ•¸å­—
 void random_fill_cells(int cells[]);
 
-// ´ú¸Õ¿é¤J¼Æ¦r¬O§_²Å¦X½d³ò©Î­«½Æ
+// æ¸¬è©¦è¼¸å…¥æ•¸å­—æ˜¯å¦ç¬¦åˆç¯„åœæˆ–é‡è¤‡
 int  error(int cells[], int enter_number);
 
-// ¦L¥X¥Ø«e®æ¤lªº¼Æ¦r©Î³Q¹º±¼ªº¦a¤è
+// å°å‡ºç›®å‰æ ¼å­çš„æ•¸å­—æˆ–è¢«åŠƒæ‰çš„åœ°æ–¹
 void print_now(int cells[]);
 
-// ¦L¥X¥Ø«e¹q¸£ªº±¡§Î
+// å°å‡ºç›®å‰é›»è…¦çš„æƒ…å½¢
 void print_computer_cells(int computer_cells[]);
 
-// Àu¥ıµ¥¯Å°}¦Cªì©l¤Æ
+// å„ªå…ˆç­‰ç´šé™£åˆ—åˆå§‹åŒ–
 void initial_level_array(int level_array[]);
 
-// «ü¦V¹ïÀ³ªº¼Æ¦r©Ò¦b®æ¤l
+// æŒ‡å‘å°æ‡‰çš„æ•¸å­—æ‰€åœ¨æ ¼å­
 void assign_cells_p(int cells[], int *cells_p[]);
 
-// ª±®a¿é¤J­n¹º±¼ªº¼Æ¦r
+// ç©å®¶è¼¸å…¥è¦åŠƒæ‰çš„æ•¸å­—
 int  player_enter_number(int player_cells[], int *player_cells_p[]);
 
-// §ïÅÜª±®a¿é¤J¤§¼Æ¦r¹ïÀ³ªºÀu¥ıµ¥¯Å
+// æ”¹è®Šç©å®¶è¼¸å…¥ä¹‹æ•¸å­—å°æ‡‰çš„å„ªå…ˆç­‰ç´š
 void filter_level_array(int level_array[], int computer_index);
 
-// §ä¥Xª±®a¿é¤J¤§¼Æ¦r¹ïÀ³ªº¹q¸£®æ¤l
+// æ‰¾å‡ºç©å®¶è¼¸å…¥ä¹‹æ•¸å­—å°æ‡‰çš„é›»è…¦æ ¼å­
 int  find_computer_index(int computer_cells[], int p_choose_number);
 
-// ±N¿ï¾Üªº¼Æ¦r¤]¹º±¼
+// å°‡é¸æ“‡çš„æ•¸å­—ä¹ŸåŠƒæ‰
 void clear_number(int *cells_p[], int enter_num);
 
-// ¹q¸£¦Û°Ê¿ï¾Ü­n¹º±¼ªº¼Æ¦r
+// é›»è…¦è‡ªå‹•é¸æ“‡è¦åŠƒæ‰çš„æ•¸å­—
 int  choose_computer_number(int computer_cells[], int level_array[]);
 
-// §ä¥X²Ä¤@­ÓÀu¥ıµ¥¯Å³Ì°ªªº®æ¤l
+// æ‰¾å‡ºç¬¬ä¸€å€‹å„ªå…ˆç­‰ç´šæœ€é«˜çš„æ ¼å­
 int  find_max(int level_array[]);
 
-// ±N¿ï¾Ü«áªº¼Æ¬ÛÃö³s½uÀu¥ıµ¥¯Å+1
+// å°‡é¸æ“‡å¾Œçš„æ•¸ç›¸é—œé€£ç·šå„ªå…ˆç­‰ç´š+1
 void level_array_add(int level_array[], int choose_cell);
 
-// ­pºâ¥Ø«eª½ªº¦³´X±ø½u
+// è¨ˆç®—ç›®å‰ç›´çš„æœ‰å¹¾æ¢ç·š
 int  determine_line_vertical(int cells[]);
 
-// ­pºâ¥Ø«e¾îªº¦³´X±ø½u
+// è¨ˆç®—ç›®å‰æ©«çš„æœ‰å¹¾æ¢ç·š
 int  determine_line_horizontal(int cells[]);
 
-// ­pºâ¥Ø«e¥æ¤eªº¦³´X±ø½u
+// è¨ˆç®—ç›®å‰äº¤å‰çš„æœ‰å¹¾æ¢ç·š
 int  determine_line_cross(int cells[]);
 
-// ­pºâ¥Ø«eÁ`¦@¦³´X±ø½u
+// è¨ˆç®—ç›®å‰ç¸½å…±æœ‰å¹¾æ¢ç·š
 int  determine_line_total(int cells[]);
 
-// ¦L¥X¥Ø«eª±®a¸ò¹q¸£¦U¦³´X±ø½u¡A¨Ã¶Ç¦^¹CÀ¸¬O§_µ²§ô
+// å°å‡ºç›®å‰ç©å®¶è·Ÿé›»è…¦å„æœ‰å¹¾æ¢ç·šï¼Œä¸¦å‚³å›éŠæˆ²æ˜¯å¦çµæŸ
 int  print_lines(int player_cells[], int computer_cells[]);
 
-// ¦L¥X¹CÀ¸µ²ªG¡A¹CÀ¸µ²§ô¡C
+// å°å‡ºéŠæˆ²çµæœï¼ŒéŠæˆ²çµæŸã€‚
 void print_over_information(int result); 
 
 int main(void) {
-    int  p_cells[25],        //ª±®a¦b®æ¤l¸Ì¨Ì§Ç¶ñ¼gªº¼Æ¦r
-        *p_cells_p[25],      //«ü¦Vª±®a¼Æ¦r©Ò¦bªº®æ¤l
-         c_cells[25],        //¹q¸£¦b®æ¤l¸Ì¨Ì§Ç¶ñº¡ªº¼Æ¦r
-        *c_cells_p[25],      //«ü¦V¹q¸£¼Æ¦r©Ò¦bªº®æ¤l
-         l_array[25],        //¹q¸£¦s©ñ¿ï¸¹Àu¥ıµ¥¯Åªº°}¦C
-         over,                     //¹CÀ¸¬O§_µ²§ô¡G0¬°©|¥¼µ²§ô¡A>0¬°µ²§ô
-         p_choose_number,          //ª±®a¿ï¾Üªº¸¹½X
-         p_choose_c_cells_index,   //ª±®a¿ï¾Üªº¸¹½X¹ïÀ³¨ì¹q¸£ªº®æ¤l
-         c_choose_number;          //¹q¸£¿ï¾Üªº¸¹½X
-    char pause;                    //¼È°±¤§¥Î
-    print_rules();                 //¦L¥X¹CÀ¸»¡©ú»P³W«h
-    print_initial_cells();         //¦L¥X¿é¤J¶¶§Çªº®æ¤l
-    initial_cells(p_cells);        //±N®æ¤lªº­Èªì©l¤Æ¬°0
-    srand(time(NULL));             //¶Ã¼ÆºØ¤l
-    fill_player_cells(p_cells);    //¶ñº¡ª±®aªº®æ¤l¡]ÀH¾÷©Î¦Û¤v¿é¤J¡^
-    srand(time(NULL));             //¶Ã¼ÆºØ¤l
-    random_fill_cells(c_cells);    //¶ñº¡¹q¸£ªº®æ¤l¡]ÀH¾÷¡^
-    initial_level_array(l_array);  //Àu¥ıµ¥¯Å°}¦Cªì©l¤Æ
-    assign_cells_p(p_cells, p_cells_p);  //±Np_cells_p«ü¦V¹ïÀ³ªº¼Æ¦r©Ò¦b®æ¤l
-    assign_cells_p(c_cells, c_cells_p);  //±Nc_cells_p«ü¦V¹ïÀ³ªº¼Æ¦r©Ò¦b®æ¤l
+    int  p_cells[25],        //ç©å®¶åœ¨æ ¼å­è£¡ä¾åºå¡«å¯«çš„æ•¸å­—
+        *p_cells_p[25],      //æŒ‡å‘ç©å®¶æ•¸å­—æ‰€åœ¨çš„æ ¼å­
+         c_cells[25],        //é›»è…¦åœ¨æ ¼å­è£¡ä¾åºå¡«æ»¿çš„æ•¸å­—
+        *c_cells_p[25],      //æŒ‡å‘é›»è…¦æ•¸å­—æ‰€åœ¨çš„æ ¼å­
+         l_array[25],        //é›»è…¦å­˜æ”¾é¸è™Ÿå„ªå…ˆç­‰ç´šçš„é™£åˆ—
+         over,                     //éŠæˆ²æ˜¯å¦çµæŸï¼š0ç‚ºå°šæœªçµæŸï¼Œ>0ç‚ºçµæŸ
+         p_choose_number,          //ç©å®¶é¸æ“‡çš„è™Ÿç¢¼
+         p_choose_c_cells_index,   //ç©å®¶é¸æ“‡çš„è™Ÿç¢¼å°æ‡‰åˆ°é›»è…¦çš„æ ¼å­
+         c_choose_number;          //é›»è…¦é¸æ“‡çš„è™Ÿç¢¼
+    char pause;                    //æš«åœä¹‹ç”¨
+    print_rules();                 //å°å‡ºéŠæˆ²èªªæ˜èˆ‡è¦å‰‡
+    print_initial_cells();         //å°å‡ºè¼¸å…¥é †åºçš„æ ¼å­
+    initial_cells(p_cells);        //å°‡æ ¼å­çš„å€¼åˆå§‹åŒ–ç‚º0
+    srand(time(NULL));             //äº‚æ•¸ç¨®å­
+    fill_player_cells(p_cells);    //å¡«æ»¿ç©å®¶çš„æ ¼å­ï¼ˆéš¨æ©Ÿæˆ–è‡ªå·±è¼¸å…¥ï¼‰
+    srand(time(NULL));             //äº‚æ•¸ç¨®å­
+    random_fill_cells(c_cells);    //å¡«æ»¿é›»è…¦çš„æ ¼å­ï¼ˆéš¨æ©Ÿï¼‰
+    initial_level_array(l_array);  //å„ªå…ˆç­‰ç´šé™£åˆ—åˆå§‹åŒ–
+    assign_cells_p(p_cells, p_cells_p);  //å°‡p_cells_pæŒ‡å‘å°æ‡‰çš„æ•¸å­—æ‰€åœ¨æ ¼å­
+    assign_cells_p(c_cells, c_cells_p);  //å°‡c_cells_pæŒ‡å‘å°æ‡‰çš„æ•¸å­—æ‰€åœ¨æ ¼å­
     do {
-        // ª±®a¹º±¼¼Æ¦r
+        // ç©å®¶åŠƒæ‰æ•¸å­—
         p_choose_number = player_enter_number(p_cells, p_cells_p);
-        // ¨D¥Xª±®a¹º±¼¤§¼Æ¦r¹ïÀ³ªº¹q¸£®æ¤l
+        // æ±‚å‡ºç©å®¶åŠƒæ‰ä¹‹æ•¸å­—å°æ‡‰çš„é›»è…¦æ ¼å­
         p_choose_c_cells_index = find_computer_index(c_cells, p_choose_number);
-        // §â¹q¸£ªºª±®a¹º±¼¤§¼Æ¦r¤]¹º±¼
+        // æŠŠé›»è…¦çš„ç©å®¶åŠƒæ‰ä¹‹æ•¸å­—ä¹ŸåŠƒæ‰
         clear_number(c_cells_p, p_choose_number);
-        // §ïÅÜp_choose_c_cells_index¬°0
+        // æ”¹è®Šp_choose_c_cells_indexç‚º0
         filter_level_array(l_array, p_choose_c_cells_index);
-        // §ïÅÜª±®a¹º±¼¤§¼Æ¦r¬ÛÃöªºÀu¥ıµ¥¯Å
+        // æ”¹è®Šç©å®¶åŠƒæ‰ä¹‹æ•¸å­—ç›¸é—œçš„å„ªå…ˆç­‰ç´š
         level_array_add(l_array, p_choose_c_cells_index);
 
         system("cls");
 
-        // ¦L¥Xª±®a¹º±¼ªº¼Æ¦r
-        printf("¡@±z¹º±¼¤F%d\n", p_choose_number + 1);
-        // ¦L¥X¥Ø«eª±®a»P¹q¸£¦U¦³´X±ø³s½u
+        // å°å‡ºç©å®¶åŠƒæ‰çš„æ•¸å­—
+        printf("ã€€æ‚¨åŠƒæ‰äº†%d\n", p_choose_number + 1);
+        // å°å‡ºç›®å‰ç©å®¶èˆ‡é›»è…¦å„æœ‰å¹¾æ¢é€£ç·š
         over = print_lines(p_cells, c_cells);
-        // ¦L¥X¥Ø«e¹q¸£ªº±¡§Î
+        // å°å‡ºç›®å‰é›»è…¦çš„æƒ…å½¢
         print_computer_cells(c_cells);
-        // ¦L¥X¥Ø«eª±®aªº®æ¤l
+        // å°å‡ºç›®å‰ç©å®¶çš„æ ¼å­
         print_now(p_cells);
 
         if (over > 0)
            break;
 
-        // ¹q¸£¦Û°Ê¿ï¾Ü¼Æ¦r
+        // é›»è…¦è‡ªå‹•é¸æ“‡æ•¸å­—
         c_choose_number = c_cells[choose_computer_number(c_cells, l_array)] - 25;
-        //¦Û°Ê±Nª±®aªº¹q¸£©Ò¿ï¾Ü¤§¼Æ¦r¤]¹º±¼
+        //è‡ªå‹•å°‡ç©å®¶çš„é›»è…¦æ‰€é¸æ“‡ä¹‹æ•¸å­—ä¹ŸåŠƒæ‰
         clear_number(p_cells_p, c_choose_number);
 
-        // ¦L¥X¹q¸£¹º±¼ªº®æ¤l
-        printf("¹q¸£¹º±¼¤F%d\n", c_choose_number + 1);
-        // ¦L¥X¥Ø«eª±®a»P¹q¸£¦U¦³´X±ø³s½u
+        // å°å‡ºé›»è…¦åŠƒæ‰çš„æ ¼å­
+        printf("é›»è…¦åŠƒæ‰äº†%d\n", c_choose_number + 1);
+        // å°å‡ºç›®å‰ç©å®¶èˆ‡é›»è…¦å„æœ‰å¹¾æ¢é€£ç·š
         over = print_lines(p_cells, c_cells);
-        // ¦L¥X¥Ø«e¹q¸£ªº±¡§Î
+        // å°å‡ºç›®å‰é›»è…¦çš„æƒ…å½¢
         print_computer_cells(c_cells);
-        // ¦L¥X¥Ø«eª±®aªº®æ¤l
+        // å°å‡ºç›®å‰ç©å®¶çš„æ ¼å­
         print_now(p_cells);
     } while (over == 0 );
 
@@ -137,48 +137,48 @@ int main(void) {
     return(0);
 }
 
-// ¦L¥X¹CÀ¸»¡©ú»P³W«h
+// å°å‡ºéŠæˆ²èªªæ˜èˆ‡è¦å‰‡
 void print_rules(void) {
-     printf("-----* »«ªG¹CÀ¸ *-----\n");
-     printf("1. ½Ğ«ö·Ó¤U¦C®æ¤l¶¶§Ç¿é¤J±z­nªº¼Æ¦r\n");
-     printf("   ¥i¤@¦¸¿é¤J¤@±Æ¡A¨C­Ó¼Æ¦r¶¡¥ÎªÅ¥Õ¹j¶}\n");
-     printf("   ¿é¤J§¹¤@­Ó¼Æ¦r©Î´X­Ó¼Æ¦r«á«öEnter¡A±N·|¦L¥X³Ì·sª¬ºA\n");
-     printf("   ¡]¦ı¬O¹CÀ¸»¡©ú©Mªì©lªº®æ¤l·|²MªÅ¡^\n");
-     printf("2. ¼Æ¦r½d³ò¬°1~25¡A­Y¬O¦³¤@­Ó¼Æ¦r¤£¦b½d³ò¤º\n");
-     printf("   µ{¦¡·|½Ğ±z¦A­«·s¿é¤J¡A­Y«á­±¤w¦³¿é¤J¼Æ¦r«h·|©¹«e®¿¤@®æ¡C\n");
-     printf("3. ¿é¤J§¹²¦«á¡Aµ{¦¡·|«ü¥Ü±z¥ı¿é¤J­n¹º±¼ªº¼Æ¦r\n");
-     printf("   ½Ğ¿é¤J±z­n¹º±¼ªº¼Æ¦r«á«öEnter\n");
-     printf("   µ{¦¡·|¶¶«K±N¹q¸£ªº¿ï¸¹µ¹¹º±¼¡C\n"); 
-     printf("4. ¹CÀ¸¦p¦P¤@¯ë»«ªG¹CÀ¸¡A¥ı¦³¤­±ø³s½uªÌ¬°Ä¹¡C\n"); 
-     printf("5. »¡©ú¨ì¦¹µ²§ô¡A½Ğ§Ö¼Ö¦aª±¹CÀ¸§a:)\n\n");
+     printf("-----* è³“æœéŠæˆ² *-----\n");
+     printf("1. è«‹æŒ‰ç…§ä¸‹åˆ—æ ¼å­é †åºè¼¸å…¥æ‚¨è¦çš„æ•¸å­—\n");
+     printf("   å¯ä¸€æ¬¡è¼¸å…¥ä¸€æ’ï¼Œæ¯å€‹æ•¸å­—é–“ç”¨ç©ºç™½éš”é–‹\n");
+     printf("   è¼¸å…¥å®Œä¸€å€‹æ•¸å­—æˆ–å¹¾å€‹æ•¸å­—å¾ŒæŒ‰Enterï¼Œå°‡æœƒå°å‡ºæœ€æ–°ç‹€æ…‹\n");
+     printf("   ï¼ˆä½†æ˜¯éŠæˆ²èªªæ˜å’Œåˆå§‹çš„æ ¼å­æœƒæ¸…ç©ºï¼‰\n");
+     printf("2. æ•¸å­—ç¯„åœç‚º1~25ï¼Œè‹¥æ˜¯æœ‰ä¸€å€‹æ•¸å­—ä¸åœ¨ç¯„åœå…§\n");
+     printf("   ç¨‹å¼æœƒè«‹æ‚¨å†é‡æ–°è¼¸å…¥ï¼Œè‹¥å¾Œé¢å·²æœ‰è¼¸å…¥æ•¸å­—å‰‡æœƒå¾€å‰æŒªä¸€æ ¼ã€‚\n");
+     printf("3. è¼¸å…¥å®Œç•¢å¾Œï¼Œç¨‹å¼æœƒæŒ‡ç¤ºæ‚¨å…ˆè¼¸å…¥è¦åŠƒæ‰çš„æ•¸å­—\n");
+     printf("   è«‹è¼¸å…¥æ‚¨è¦åŠƒæ‰çš„æ•¸å­—å¾ŒæŒ‰Enter\n");
+     printf("   ç¨‹å¼æœƒé †ä¾¿å°‡é›»è…¦çš„é¸è™Ÿçµ¦åŠƒæ‰ã€‚\n"); 
+     printf("4. éŠæˆ²å¦‚åŒä¸€èˆ¬è³“æœéŠæˆ²ï¼Œå…ˆæœ‰äº”æ¢é€£ç·šè€…ç‚ºè´ã€‚\n"); 
+     printf("5. èªªæ˜åˆ°æ­¤çµæŸï¼Œè«‹å¿«æ¨‚åœ°ç©éŠæˆ²å§:)\n\n");
 }
 
-// ¦L¥X¿é¤J¶¶§Çªº®æ¤l
+// å°å‡ºè¼¸å…¥é †åºçš„æ ¼å­
 void print_initial_cells(void) {
      int i;
-     printf("\n¢z¡Ğ¡Ğ¡Ğ¡Ğ¡Ğ¡Ğ¡Ğ¡Ğ¡Ğ¢{\n");
+     printf("\nâ”Œï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼â”\n");
      for (i = 1; i <= 25; i++) {
          if (i % 5 == 1)
-            printf("¡U"); 
-         printf("%2d¡U", i); 
+            printf("ï½œ"); 
+         printf("%2dï½œ", i); 
          if (i % 5 == 0 && i != 25)
-            printf("\n¢u¡Ğ¡Ï¡Ğ¡Ï¡Ğ¡Ï¡Ğ¡Ï¡Ğ¢t\n");
+            printf("\nâ”œï¼ï¼‹ï¼ï¼‹ï¼ï¼‹ï¼ï¼‹ï¼â”¤\n");
      }
-     printf("\n¢|¡Ğ¡Ğ¡Ğ¡Ğ¡Ğ¡Ğ¡Ğ¡Ğ¡Ğ¢}\n");
+     printf("\nâ””ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼â”˜\n");
 }
 
-// ±N®æ¤lªº­Èªì©l¤Æ¬°-1
+// å°‡æ ¼å­çš„å€¼åˆå§‹åŒ–ç‚º-1
 void initial_cells(int cells[]) {
      int i;
      for (i = 0; i < 25; i++)
          cells[i] = -1;
 }
 
-// ¶ñº¡ª±®aªº®æ¤l¡]ÀH¾÷©Î¦Û¤v¿é¤J¡^
+// å¡«æ»¿ç©å®¶çš„æ ¼å­ï¼ˆéš¨æ©Ÿæˆ–è‡ªå·±è¼¸å…¥ï¼‰
 void fill_player_cells(int cells[]) {
      int sum = 0, enter_num;
      do {
-         printf("½Ğ¿é¤J­n¶ñ¤Jªº¼Æ¦r¡]©Î¿é¤J0¥Ñ¹q¸£ÀH¾÷¶ñ¤J¼Æ¦r¡^ >> ");
+         printf("è«‹è¼¸å…¥è¦å¡«å…¥çš„æ•¸å­—ï¼ˆæˆ–è¼¸å…¥0ç”±é›»è…¦éš¨æ©Ÿå¡«å…¥æ•¸å­—ï¼‰ >> ");
          scanf("%d", &enter_num);
          if (enter_num == 0) {
             random_fill_cells(cells);
@@ -193,7 +193,7 @@ void fill_player_cells(int cells[]) {
      } while (sum < 25);
 }
 
-// ÀH¾÷¶ñ¤J¼Æ¦r
+// éš¨æ©Ÿå¡«å…¥æ•¸å­—
 void random_fill_cells(int cells[]) {
      int i, a, b, temp;
      for (i = 0; i < 25; i++) {
@@ -208,56 +208,56 @@ void random_fill_cells(int cells[]) {
      }
 }
 
-// ´ú¸Õ¿é¤J¼Æ¦r¬O§_²Å¦X½d³ò©Î­«½Æ
+// æ¸¬è©¦è¼¸å…¥æ•¸å­—æ˜¯å¦ç¬¦åˆç¯„åœæˆ–é‡è¤‡
 int  error(int cells[], int enter_number) {
      int err = 0, i;
      for (i = 0; i < 25 && !err; i++)
          if (enter_number == cells[i]) {
             err = 1;
-            printf("%d­«ÂĞ¿é¤J¡A½Ğ¿é¤J¨ä¥L¼Æ\n", enter_number);
+            printf("%dé‡è¦†è¼¸å…¥ï¼Œè«‹è¼¸å…¥å…¶ä»–æ•¸\n", enter_number);
          }
      if (enter_number < 1 || enter_number > 25) {
         err = 1;
-        printf("%d¶W¥X½d³ò¡A½Ğ¿é¤J¨ä¥L¼Æ\n", enter_number);
+        printf("%dè¶…å‡ºç¯„åœï¼Œè«‹è¼¸å…¥å…¶ä»–æ•¸\n", enter_number);
      }
      return(err);
 }
 
-// ¦L¥X¥Ø«e®æ¤lªº¼Æ¦r©Î³Q¹º±¼ªº¦a¤è
+// å°å‡ºç›®å‰æ ¼å­çš„æ•¸å­—æˆ–è¢«åŠƒæ‰çš„åœ°æ–¹
 void print_now(int cells[]) {
      int i;
-     printf("\n¡Ğ¡Ğ¡Ğ¡Ğ¡Ğ¡Ğ¡Ğ¡Ğ¡Ğ¡Ğ¡Ğ\n");
+     printf("\nï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼\n");
      for (i = 0; i < 25; i++) {
          if (i % 5 == 0)
-            printf("¡U"); 
+            printf("ï½œ"); 
          if (cells[i] >= 25)
-            printf("¡´¡U"); 
+            printf("â—ï½œ"); 
          else
-             printf("%2d¡U", cells[i] + 1); 
+             printf("%2dï½œ", cells[i] + 1); 
          if (i % 5 == 4 && i != 25 - 1)
-            printf("\n¡Ğ¡Ğ¡Ï¡Ğ¡Ï¡Ğ¡Ï¡Ğ¡Ï¡Ğ¡Ğ\n");
+            printf("\nï¼ï¼ï¼‹ï¼ï¼‹ï¼ï¼‹ï¼ï¼‹ï¼ï¼\n");
      }
-     printf("\n¡Ğ¡Ğ¡Ğ¡Ğ¡Ğ¡Ğ¡Ğ¡Ğ¡Ğ¡Ğ¡Ğ\n");
+     printf("\nï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼\n");
 }
 
-// ¦L¥X¥Ø«e¹q¸£ªº±¡§Î
+// å°å‡ºç›®å‰é›»è…¦çš„æƒ…å½¢
 void print_computer_cells(int computer_cells[]) {
      int i;
-     printf("\n¡Ğ¡Ğ¡Ğ¡Ğ¡Ğ¡Ğ¡Ğ¡Ğ¡Ğ¡Ğ¡Ğ\n");
+     printf("\nï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼\n");
      for (i = 0; i < 25; i++) {
          if (i % 5 == 0)
-            printf("¡U"); 
+            printf("ï½œ"); 
          if (computer_cells[i] >= 25)
-            printf("¡´¡U"); 
+            printf("â—ï½œ"); 
          else
-             printf("¡³¡U"); 
+             printf("â—‹ï½œ"); 
          if (i % 5 == 4 && i != 25 - 1)
-            printf("\n¡Ğ¡Ğ¡Ï¡Ğ¡Ï¡Ğ¡Ï¡Ğ¡Ï¡Ğ¡Ğ\n");
+            printf("\nï¼ï¼ï¼‹ï¼ï¼‹ï¼ï¼‹ï¼ï¼‹ï¼ï¼\n");
      }
-     printf("\n¡Ğ¡Ğ¡Ğ¡Ğ¡Ğ¡Ğ¡Ğ¡Ğ¡Ğ¡Ğ¡Ğ\n");
+     printf("\nï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼ï¼\n");
 }
 
-// Àu¥ıµ¥¯Å°}¦Cªì©l¤Æ
+// å„ªå…ˆç­‰ç´šé™£åˆ—åˆå§‹åŒ–
 void initial_level_array(int level_array[]) {
      int i;
      for (i = 0; i < 25; i++) {
@@ -270,33 +270,33 @@ void initial_level_array(int level_array[]) {
      
 }
 
-// «ü¦V¹ïÀ³ªº¼Æ¦r©Ò¦b®æ¤l
+// æŒ‡å‘å°æ‡‰çš„æ•¸å­—æ‰€åœ¨æ ¼å­
 void assign_cells_p(int cells[], int *cells_p[]) {
      int i;
      for (i = 0; i < 25; i++)
          cells_p[cells[i]] = &cells[i];
 }
 
-// ª±®a¿é¤J­n¹º±¼ªº¼Æ¦r
+// ç©å®¶è¼¸å…¥è¦åŠƒæ‰çš„æ•¸å­—
 int  player_enter_number(int player_cells[], int *player_cells_p[]) {
      int clear_n;
-     printf("½Ğ¿é¤J­n¹º±¼ªº¼Æ¦r >> ");
+     printf("è«‹è¼¸å…¥è¦åŠƒæ‰çš„æ•¸å­— >> ");
      scanf("%d", &clear_n);
      clear_n--;
      if (clear_n > 24 || clear_n < 0 || *player_cells_p[clear_n] >= 25) {
-        printf("¶W¥X½d³ò©Î¬O¤w¹º±¼¡A½Ğ­«·s¿é¤J¡C\n");
+        printf("è¶…å‡ºç¯„åœæˆ–æ˜¯å·²åŠƒæ‰ï¼Œè«‹é‡æ–°è¼¸å…¥ã€‚\n");
      } else {
           clear_number(player_cells_p, clear_n);
           return(clear_n);
      }
 }
 
-// §ïÅÜª±®a¿é¤J¤§¼Æ¦r¹ïÀ³ªºÀu¥ıµ¥¯Å
+// æ”¹è®Šç©å®¶è¼¸å…¥ä¹‹æ•¸å­—å°æ‡‰çš„å„ªå…ˆç­‰ç´š
 void filter_level_array(int level_array[], int computer_index) {
      level_array[computer_index] = 0;
 }
 
-// §ä¥Xª±®a¿é¤J¤§¼Æ¦r¹ïÀ³ªº¹q¸£®æ¤l
+// æ‰¾å‡ºç©å®¶è¼¸å…¥ä¹‹æ•¸å­—å°æ‡‰çš„é›»è…¦æ ¼å­
 int  find_computer_index(int computer_cells[], int p_choose_number) {
      int i;
      for (i = 0; i < 25; i++) {
@@ -306,12 +306,12 @@ int  find_computer_index(int computer_cells[], int p_choose_number) {
      return(i);
 }
 
-// ±N¿ï¾Üªº¼Æ¦r¤]¹º±¼
+// å°‡é¸æ“‡çš„æ•¸å­—ä¹ŸåŠƒæ‰
 void clear_number(int *cells_p[], int enter_num) {
      *cells_p[enter_num] += 25;
 }
 
-// ¹q¸£¦Û°Ê¿ï¾Ü­n¹º±¼ªº®æ¤l
+// é›»è…¦è‡ªå‹•é¸æ“‡è¦åŠƒæ‰çš„æ ¼å­
 int  choose_computer_number(int computer_cells[], int level_array[]) {
      int max_index;
      max_index = find_max(level_array);
@@ -321,7 +321,7 @@ int  choose_computer_number(int computer_cells[], int level_array[]) {
      return(max_index);
 }
 
-// §ä¥X²Ä¤@­ÓÀu¥ıµ¥¯Å³Ì°ªªº®æ¤l
+// æ‰¾å‡ºç¬¬ä¸€å€‹å„ªå…ˆç­‰ç´šæœ€é«˜çš„æ ¼å­
 int  find_max(int level_array[]) {
      int max_value = level_array[0], i, first_max_index = -1;
      for (i = 0; i < 25; i++)
@@ -337,12 +337,12 @@ int  find_max(int level_array[]) {
      return(first_max_index);
 }
 
-// ±N¿ï¾Ü«áªº¼Æ¬ÛÃö³s½uÀu¥ıµ¥¯Å+1
+// å°‡é¸æ“‡å¾Œçš„æ•¸ç›¸é—œé€£ç·šå„ªå…ˆç­‰ç´š+1
 void level_array_add(int level_array[], int choose_cell) {
      int difference, i;
      difference = choose_cell % 5;
 
-     // ¾î+1
+     // æ©«+1
      for (i = choose_cell - difference; i < choose_cell; i++)
 	 if (level_array[i] != 0)
 	    level_array[i]++;
@@ -350,7 +350,7 @@ void level_array_add(int level_array[], int choose_cell) {
          if (level_array[i] != 0)
             level_array[i]++;
 
-     // ª½+1
+     // ç›´+1
      for (i = choose_cell % 5; i < choose_cell; i += 5)
          if (level_array[i] != 0)
 	    level_array[i]++;
@@ -358,7 +358,7 @@ void level_array_add(int level_array[], int choose_cell) {
          if (level_array[i] != 0)
 	    level_array[i]++;
 
-     // ¥æ¤e+1
+     // äº¤å‰+1
      if (choose_cell % 6 == 0)
         for (i = 0; i < 25; i += 6)
             if (level_array[i] != 0)
@@ -376,7 +376,7 @@ void level_array_add(int level_array[], int choose_cell) {
      }
 }
 
-// ­pºâ¥Ø«eª½ªº¦³´X±ø½u
+// è¨ˆç®—ç›®å‰ç›´çš„æœ‰å¹¾æ¢ç·š
 int  determine_line_vertical(int cells[]) {
      int connect, sum = 0, i, j;
      for (i = 0; i < 5; i++) {
@@ -391,7 +391,7 @@ int  determine_line_vertical(int cells[]) {
      return(sum);
 }
 
-// ­pºâ¥Ø«e¾îªº¦³´X±ø½u
+// è¨ˆç®—ç›®å‰æ©«çš„æœ‰å¹¾æ¢ç·š
 int  determine_line_horizontal(int cells[]) {
      int connect, sum = 0, i, j;
      for (i = 0; i < 5; i++) {
@@ -405,7 +405,7 @@ int  determine_line_horizontal(int cells[]) {
      return(sum);
 }
 
-// ­pºâ¥Ø«e¥æ¤eªº¦³´X±ø½u
+// è¨ˆç®—ç›®å‰äº¤å‰çš„æœ‰å¹¾æ¢ç·š
 int  determine_line_cross(int cells[]) {
      int connect, sum = 0, i;
      connect = 1;
@@ -424,40 +424,40 @@ int  determine_line_cross(int cells[]) {
      return(sum);
 }
 
-// ­pºâ¥Ø«eÁ`¦@¦³´X±ø½u
+// è¨ˆç®—ç›®å‰ç¸½å…±æœ‰å¹¾æ¢ç·š
 int  determine_line_total(int cells[]) {
      return (determine_line_vertical(cells) +
              determine_line_horizontal(cells) +
              determine_line_cross(cells));
 }
 
-// ¦L¥X¥Ø«eª±®a¸ò¹q¸£¦U¦³´X±ø½u¡A¨Ã¶Ç¦^¹CÀ¸¬O§_µ²§ô
+// å°å‡ºç›®å‰ç©å®¶è·Ÿé›»è…¦å„æœ‰å¹¾æ¢ç·šï¼Œä¸¦å‚³å›éŠæˆ²æ˜¯å¦çµæŸ
 int  print_lines(int player_cells[], int computer_cells[]) {
      int player_lines, computer_lines;
      player_lines = determine_line_total(player_cells);
      computer_lines = determine_line_total(computer_cells);
-     printf("¡@±z¥Ø«e¦³ %d ±ø³s½u\n", player_lines);
-     printf("¹q¸£¥Ø«e¦³ %d ±ø³s½u\n", computer_lines);
+     printf("ã€€æ‚¨ç›®å‰æœ‰ %d æ¢é€£ç·š\n", player_lines);
+     printf("é›»è…¦ç›®å‰æœ‰ %d æ¢é€£ç·š\n", computer_lines);
 
      if (computer_lines >= 5 || player_lines >= 5)
-        printf("¡¹³Ì²×³Ó­t >> ¡]±z¡^%d : ¡]¹q¸£¡^%d\n", player_lines, computer_lines);
+        printf("â˜…æœ€çµ‚å‹è²  >> ï¼ˆæ‚¨ï¼‰%d : ï¼ˆé›»è…¦ï¼‰%d\n", player_lines, computer_lines);
 
      if (player_lines >= 5 && computer_lines < 5)
-        return(1);	  // ª±®aÄ¹
+        return(1);	  // ç©å®¶è´
      else if (computer_lines >= 5 && player_lines < 5)
-             return(2);   // ¹q¸£Ä¹
+             return(2);   // é›»è…¦è´
      else if (player_lines == 5 && computer_lines == 5)
-             return(3);   // ¥­¤â
+             return(3);   // å¹³æ‰‹
      else
-         return(0);       // ¹CÀ¸©|¥¼µ²§ô
+         return(0);       // éŠæˆ²å°šæœªçµæŸ
 }
 
 void print_over_information(int result) {
      if (result == 1)
-        printf("\n®¥³ß§A¡IÄ¹¤F¡I¹CÀ¸µ²§ô¡AÁÂÁÂ±zªº½à¥ú¡I\n");
+        printf("\næ­å–œä½ ï¼è´äº†ï¼éŠæˆ²çµæŸï¼Œè¬è¬æ‚¨çš„è³å…‰ï¼\n");
      else if (result == 2)
-             printf("\nOops!¤£¦n·N«ä¹q¸£Ä¹¤F¡A½Ğ¤£­nÃø¹L¡I¹CÀ¸µ²§ô¡AÁÂÁÂ±zªº½à¥ú¡I\n");
+             printf("\nOops!ä¸å¥½æ„æ€é›»è…¦è´äº†ï¼Œè«‹ä¸è¦é›£éï¼éŠæˆ²çµæŸï¼Œè¬è¬æ‚¨çš„è³å…‰ï¼\n");
      else
-         printf("\n¥­¤â­C¡I¹CÀ¸µ²§ô¡AÁÂÁÂ±zªº½à¥ú¡I\n");
+         printf("\nå¹³æ‰‹è€¶ï¼éŠæˆ²çµæŸï¼Œè¬è¬æ‚¨çš„è³å…‰ï¼\n");
      system("pause");
 }
